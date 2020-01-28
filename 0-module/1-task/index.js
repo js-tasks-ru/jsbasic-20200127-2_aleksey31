@@ -5,5 +5,7 @@
  * @returns {number}
  */
 function sum(m, n) {
-
+    return m + n;
 }
+
+console.log(sum(15, 5));
