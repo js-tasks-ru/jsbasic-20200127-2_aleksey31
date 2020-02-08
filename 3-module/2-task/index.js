@@ -4,7 +4,7 @@
  * @returns {{min:number, max:number}}  объект
  */
 function getMinMax(str) {
-    let arr = string.split(" ");
+    let arr = str.split(" ");
 
     let num = arr.map((item) => parseFloat(item))
         .filter((item) => !isNaN(item));
