@@ -6,8 +6,7 @@
 function getMinMax(str) {
     let arr = str.split(" ");
 
-    let num = arr.map((item) => parseFloat(item))
-        .filter((item) => !isNaN(item));
+    let num = arr.map((item) => parseFloat(item)).filter((item) => !isNaN(item));
 
     let result = {
         min: Math.min(...num),
