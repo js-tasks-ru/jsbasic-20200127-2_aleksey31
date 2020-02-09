@@ -5,4 +5,10 @@
  * @returns {number[]}
  */
 function filterRange(arr, a, b) {
+    let newArr = arr.filter((item) => {
+        if (item >= a && item <= b) {
+            return item;
+        }
+    });
+    return newArr;
 }
