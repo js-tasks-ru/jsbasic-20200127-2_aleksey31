@@ -13,18 +13,20 @@ function highlight(table) {
                 item.classList.add('unavailable');
             }
 
-            if (item.cells[2].innerHTML === "f") {
-                item.classList.add('female');
-            } else if (item.cells[2].innerHTML === "m") {
-                item.classList.add('male');
-            }
 
-            if (item.cells[1].innerHTML < 18 ) {
-                item.style.textDecoration = "line-through";
-            }
 
         } else {
             item.setAttribute("hidden", "");
+        }
+
+        if (item.cells[2].innerHTML === "f") {
+            item.classList.add('female');
+        } else if (item.cells[2].innerHTML === "m") {
+            item.classList.add('male');
+        }
+
+        if (item.cells[1].innerHTML < 18 ) {
+            item.style.textDecoration = "line-through";
         }
 
     }
