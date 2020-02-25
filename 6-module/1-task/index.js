@@ -50,9 +50,7 @@ class ClearedTable {
    * Метод который вызывается после удалении строки
    * @param {number} id - идентификатор удаляемого пользователя
    */
-  onRemoved(id) {
-     console.log(`Из таблицы удален пользователь ${id}`);
-  }
+  onRemoved(id) {}
 }
 
 window.ClearedTable = ClearedTable;
