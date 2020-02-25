@@ -50,7 +50,9 @@ class ClearedTable {
    * Метод который вызывается после удалении строки
    * @param {number} id - идентификатор удаляемого пользователя
    */
-  onRemoved(id) {}
+  onRemoved(id) {
+    return id;
+  }
 }
 
 window.ClearedTable = ClearedTable;
