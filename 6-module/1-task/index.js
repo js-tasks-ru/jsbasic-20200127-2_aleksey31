@@ -41,7 +41,6 @@ class ClearedTable {
         e.target.closest("tr").remove();
         let returnId = new Event("my-event");
         e.target.dispatchEvent(returnId);
-        console.log(e.target.dataset.close);
       }
     }
   }
@@ -52,7 +51,7 @@ class ClearedTable {
    * @param {number} id - идентификатор удаляемого пользователя
    */
   onRemoved(id) {
-     return id;
+     console.log(`Из таблицы удален пользователь ${id}`);
   }
 }
 
