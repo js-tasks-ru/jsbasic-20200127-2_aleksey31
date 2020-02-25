@@ -34,7 +34,7 @@ class ClearedTable {
     });
 
     this.el.addEventListener('click', rowRemove);
-    this.el.addEventListener('myEvent', (e) => this.onRemoved(e.target.dataset.close));
+    this.el.addEventListener('myEvent', (e) => this.onRemoved(+e.target.dataset.close));
 
 
 
