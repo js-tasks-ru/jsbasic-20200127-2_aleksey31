@@ -29,7 +29,7 @@ class ClearedTable {
 
     data.forEach((item, index) => {
       let row = document.createElement('tr');
-      row.innerHTML = `<td>${item.name}</td><td>${item.age}</td><td>${item.salary}</td><td>${item.city}</td><td><a href="" data-close="${item.id}">X</a></td>`;
+      row.innerHTML = `<td>${item.name}</td><td>${item.age}</td><td>${item.salary}</td><td>${item.city}</td><td><a href="#delete" data-close="${item.id}">X</a></td>`;
       tBody.append(row);
     });
 
