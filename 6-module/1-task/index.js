@@ -51,7 +51,7 @@ class ClearedTable {
    * @param {number} id - идентификатор удаляемого пользователя
    */
   onRemoved(id) {
-    return id;
+    console.log(`Из таблицы удален пользователь ${+id}`);
   }
 }
 
