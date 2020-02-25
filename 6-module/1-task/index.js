@@ -33,14 +33,17 @@ class ClearedTable {
       tBody.append(row);
     });
 
-    this.el.addEventListener("click", rowRemove);
-    this.el.addEventListener("click", (e) => this.onRemoved(e.target.dataset.close));
+    this.el.addEventListener('click', rowRemove);
+    this.el.addEventListener('myEvent', (e) => this.onRemoved(e.target.dataset.close));
+
+
+
     function rowRemove(e) {
       e.preventDefault();
       if (e.target.tagName === "A") {
-        e.target.closest("tr").remove();
-        let returnId = new Event("my-event");
+        let returnId = new Event('myEvent', {bubbles: true});
         e.target.dispatchEvent(returnId);
+        e.target.closest("tr").remove();
       }
     }
   }
@@ -51,7 +54,7 @@ class ClearedTable {
    * @param {number} id - идентификатор удаляемого пользователя
    */
   onRemoved(id) {
-    console.log(`Из таблицы удален пользователь ${+id}`);
+    console.log(`Из таблицы удален пользователь ${id}`);
   }
 }
 
