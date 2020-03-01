@@ -26,6 +26,8 @@ class Carousel {
     this.el.innerHTML = `<div id="mainCarousel" class="main-carousel carousel slide">
                              <ol class="carousel-indicators">
                                  <li data-target="#mainCarousel" data-slide-to="0" class="carousel-indicator"></li>
+                                 <li data-target="#mainCarousel" data-slide-to="1" class="carousel-indicator"></li>
+                                 <li data-target="#mainCarousel" data-slide-to="2" class="carousel-indicator"></li>
                              </ol>
                              <div class="carousel-inner">
                                  <!--Вот здесь будет активный слайд-->
@@ -100,7 +102,7 @@ class Carousel {
                         </div>
                     </div>
                 </div>`;
-        this.el.querySelector(".carousel-indicators").innerHTML += `<li data-target="#mainCarousel" data-slide-to="${this.slides[this.i].id}" class="carousel-indicator"></li>`;
+
       }
         if (this.el.querySelector(".carousel-item.active").nextElementSibling) {
           this.el.querySelector(".carousel-item.active").nextElementSibling.classList.add("active");
@@ -139,7 +141,7 @@ class Carousel {
                         </div>
                     </div>
                 </div>`;
-        this.el.querySelector(".carousel-indicators").innerHTML += `<li data-target="#mainCarousel" data-slide-to="${this.slides[this.i].id}" class="carousel-indicator"></li>`;
+
       }
 
           if (this.el.querySelector(".carousel-item.active").previousElementSibling) {
