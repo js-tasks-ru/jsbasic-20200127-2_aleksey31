@@ -59,7 +59,11 @@ class Carousel {
                   </div>`;
       this.el.querySelector(".carousel-inner").innerHTML += this.item;
     });
-    this.el.querySelector(".carousel-item").classList.add("active");
+
+   
+   this.el.querySelectorAll(".carousel-item")[this.slides[0].id].classList.add("active");
+
+
 
     this.el.querySelector(".carousel-control-next").addEventListener('click', (e) => {
         if (this.el.querySelector(".active").nextElementSibling) {
