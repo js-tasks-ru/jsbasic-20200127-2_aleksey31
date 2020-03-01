@@ -44,39 +44,27 @@ class Carousel {
                          </div>`;
 
 
-    // this.slides.forEach(({id, title, img}, index, arr) => {
-    //   this.item = `<div class="carousel-item" data-id="${id}">
-    //                   <img src="${img}" alt="Activelide">
-    //                   <div class="container">
-    //                       <div class="carousel-caption">
-    //                           <h3 class="h1">${title}</h3>
-    //                           <div>
-    //                               <a class="btn" href="#" role="button">
-    //                                   View all DEALS
-    //                                   <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="">
-    //                               </a>
-    //                           </div>
-    //                       </div>
-    //                   </div>
-    //               </div>`;
-    //   this.el.querySelector(".carousel-inner").innerHTML += this.item;
-    // });
+    let render = this.slides.map((item, index, arr) => {
 
+      return `<div class="carousel-item" data-id="${item.id}">
+                      <img src="${item.img}" alt="Activelide">
+                      <div class="container">
+                          <div class="carousel-caption">
+                              <h3 class="h1">${item.title}</h3>
+                              <div>
+                                  <a class="btn" href="#" role="button">
+                                      View all DEALS
+                                      <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="">
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>`;
+    });
+    console.log(render);
 
-    this.el.querySelector(".carousel-inner").innerHTML = `<div class="carousel-item" data-id="${this.slides[this.i].id}">
-                    <img src="${this.slides[this.i].img}" alt="Activelide">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h3 class="h1">${this.slides[this.i].title}</h3>
-                            <div>
-                                <a class="btn" href="#" role="button">
-                                    View all DEALS
-                                    <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
+    this.el.querySelector(".carousel-inner").innerHTML = render[0];
+
     this.el.querySelectorAll(".carousel-item")[+this.slides[0].id].classList.add("active");
     this.el.querySelector(`*[data-slide-to="${this.slides[this.i].id}"]`).classList.add("active");
 
@@ -88,29 +76,16 @@ class Carousel {
       }
       if (this.i <= this.slides.length - 1) {
 
-        this.el.querySelector(".carousel-inner").innerHTML += `<div class="carousel-item" data-id="${this.slides[this.i].id}">
-                    <img src="${this.slides[this.i].img}" alt="Activelide">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h3 class="h1">${this.slides[this.i].title}</h3>
-                            <div>
-                                <a class="btn" href="#" role="button">
-                                    View all DEALS
-                                    <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
+        this.el.querySelector(".carousel-inner").innerHTML += render[this.slides[this.i].id];
 
       }
-        if (this.el.querySelector(".carousel-item.active").nextElementSibling) {
-          this.el.querySelector(".carousel-item.active").nextElementSibling.classList.add("active");
-          this.el.querySelector(".carousel-item.active").classList.remove("active");
-        } else {
-          this.el.querySelector(".carousel-item").classList.add("active");
-          this.el.querySelectorAll(".carousel-item.active")[1].classList.remove("active");
-        }
+      if (this.el.querySelector(".carousel-item.active").nextElementSibling) {
+        this.el.querySelector(".carousel-item.active").nextElementSibling.classList.add("active");
+        this.el.querySelector(".carousel-item.active").classList.remove("active");
+      } else {
+        this.el.querySelector(".carousel-item").classList.add("active");
+        this.el.querySelectorAll(".carousel-item.active")[1].classList.remove("active");
+      }
 
       this.el.querySelectorAll(".carousel-indicator").forEach((item => {
         if (item.classList.contains("active")){
@@ -127,53 +102,41 @@ class Carousel {
       }
 
       if (this.i <= this.slides.length - 1) {
-        this.el.querySelector(".carousel-inner").innerHTML += `<div class="carousel-item" data-id="${this.slides[this.i].id}">
-                    <img src="${this.slides[this.i].img}" alt="Activelide">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h3 class="h1">${this.slides[this.i].title}</h3>
-                            <div>
-                                <a class="btn" href="#" role="button">
-                                    View all DEALS
-                                    <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
+        this.el.querySelector(".carousel-inner").innerHTML += render[this.slides[this.i].id];
 
       }
 
-          if (this.el.querySelector(".carousel-item.active").previousElementSibling) {
-            this.el.querySelector(".carousel-item.active").previousElementSibling.classList.add("active");
-            this.el.querySelectorAll(".carousel-item.active")[1].classList.remove("active");
-            this.el.querySelectorAll(".carousel-indicator").forEach((item => {
-              if (item.classList.contains("active")){
-                item.classList.remove("active");
-              }
-            }));
-            console.log("активный слайд", this.el.querySelector(".carousel-item.active").dataset.id);
-            this.el.querySelector(`*[data-slide-to="${this.el.querySelector(".carousel-item.active").dataset.id}"]`).classList.add("active");
-          } else {
-            if (this.el.querySelectorAll(".carousel-item").length > 1) {
-              this.el.querySelector(".carousel-inner").lastElementChild.classList.add("active");
-              this.el.querySelector(".carousel-item.active").classList.remove("active");
-              this.el.querySelectorAll(".carousel-indicator").forEach((item => {
-                if (item.classList.contains("active")){
-                  item.classList.remove("active");
-                }
-              }));
-            }
-
-            if (this.el.querySelectorAll(".carousel-item").length > 1) {
-              console.log("активный слайд", this.el.querySelector(".carousel-item.active").dataset.id);
-              this.el.querySelector(`*[data-slide-to="${this.el.querySelector(".carousel-item.active").dataset.id}"]`).classList.add("active");
-            }
+      if (this.el.querySelector(".carousel-item.active").previousElementSibling) {
+        this.el.querySelector(".carousel-item.active").previousElementSibling.classList.add("active");
+        this.el.querySelectorAll(".carousel-item.active")[1].classList.remove("active");
+        this.el.querySelectorAll(".carousel-indicator").forEach((item => {
+          if (item.classList.contains("active")){
+            item.classList.remove("active");
           }
+        }));
+        console.log("активный слайд", this.el.querySelector(".carousel-item.active").dataset.id);
+        this.el.querySelector(`*[data-slide-to="${this.el.querySelector(".carousel-item.active").dataset.id}"]`).classList.add("active");
+      } else {
+        if (this.el.querySelectorAll(".carousel-item").length > 1) {
+          this.el.querySelector(".carousel-inner").lastElementChild.classList.add("active");
+          this.el.querySelector(".carousel-item.active").classList.remove("active");
+          this.el.querySelectorAll(".carousel-indicator").forEach((item => {
+            if (item.classList.contains("active")){
+              item.classList.remove("active");
+            }
+          }));
+        }
+
+        if (this.el.querySelectorAll(".carousel-item").length > 1) {
+          console.log("активный слайд", this.el.querySelector(".carousel-item.active").dataset.id);
+          this.el.querySelector(`*[data-slide-to="${this.el.querySelector(".carousel-item.active").dataset.id}"]`).classList.add("active");
+        }
+      }
     });
 
     this.el.querySelector(".carousel-indicators").addEventListener('click', (e) => {
-        if (e.target.tagName === "LI") {
+
+        if (e.target.tagName === "LI" &&  this.el.querySelector(`.carousel-item[data-id="${e.target.dataset.slideTo}"]`)) {
           this.el.querySelectorAll(".carousel-indicator").forEach((item => {
             if (item.classList.contains("active")){
               item.classList.remove("active");
