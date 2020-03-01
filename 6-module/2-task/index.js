@@ -26,8 +26,6 @@ class Carousel {
     this.el.innerHTML = `<div id="mainCarousel" class="main-carousel carousel slide">
                              <ol class="carousel-indicators">
                                  <li data-target="#mainCarousel" data-slide-to="0" class="carousel-indicator"></li>
-                                 <li data-target="#mainCarousel" data-slide-to="1" class="carousel-indicator"></li>
-                                 <li data-target="#mainCarousel" data-slide-to="2" class="carousel-indicator"></li>
                              </ol>
                              <div class="carousel-inner">
                                  <!--Вот здесь будет активный слайд-->
@@ -108,6 +106,7 @@ class Carousel {
                         </div>
                     </div>
                 </div>`;
+        this.el.querySelector(".carousel-indicators").innerHTML += `<li data-target="#mainCarousel" data-slide-to="${this.slides[this.i].id}" class="carousel-indicator"></li>`;
       }
         if (this.el.querySelector(".carousel-item.active").nextElementSibling) {
           this.el.querySelector(".carousel-item.active").nextElementSibling.classList.add("active");
@@ -127,26 +126,40 @@ class Carousel {
     });
 
     this.el.querySelector(".carousel-control-prev").addEventListener('click', (e) => {
-        if (this.el.querySelectorAll(".carousel-item").length >= this.slides.length) {
+
           if (this.el.querySelector(".carousel-item.active").previousElementSibling) {
             this.el.querySelector(".carousel-item.active").previousElementSibling.classList.add("active");
             this.el.querySelectorAll(".carousel-item.active")[1].classList.remove("active");
+            this.el.querySelectorAll(".carousel-indicator").forEach((item => {
+              if (item.classList.contains("active")){
+                item.classList.remove("active");
+              }
+            }));
+            console.log("активный слайд", this.el.querySelector(".carousel-item.active").dataset.id);
+            this.el.querySelector(`*[data-slide-to="${this.el.querySelector(".carousel-item.active").dataset.id}"]`).classList.add("active");
           } else {
-            this.el.querySelector(".carousel-inner").lastElementChild.classList.add("active");
-            this.el.querySelector(".carousel-item.active").classList.remove("active");
-          }
-          this.el.querySelectorAll(".carousel-indicator").forEach((item => {
-            if (item.classList.contains("active")){
-              item.classList.remove("active");
+            if (this.el.querySelectorAll(".carousel-item").length > 1) {
+              this.el.querySelector(".carousel-inner").lastElementChild.classList.add("active");
+              this.el.querySelector(".carousel-item.active").classList.remove("active");
+              this.el.querySelectorAll(".carousel-indicator").forEach((item => {
+                if (item.classList.contains("active")){
+                  item.classList.remove("active");
+                }
+              }));
             }
-          }));
-          console.log("активный слайд", this.el.querySelector(".carousel-item.active").dataset.id);
-          this.el.querySelector(`*[data-slide-to="${this.el.querySelector(".carousel-item.active").dataset.id}"]`).classList.add("active");
-        }
+
+            if (this.el.querySelectorAll(".carousel-item").length > 1) {
+              console.log("активный слайд", this.el.querySelector(".carousel-item.active").dataset.id);
+              this.el.querySelector(`*[data-slide-to="${this.el.querySelector(".carousel-item.active").dataset.id}"]`).classList.add("active");
+            }
+
+          }
+
+
     });
 
     this.el.querySelector(".carousel-indicators").addEventListener('click', (e) => {
-      if (this.el.querySelectorAll(".carousel-item").length >= this.slides.length) {
+      // if (this.el.querySelectorAll(".carousel-item").length >= this.slides.length) {
         if (e.target.tagName === "LI") {
           this.el.querySelectorAll(".carousel-indicator").forEach((item => {
             if (item.classList.contains("active")){
@@ -157,7 +170,7 @@ class Carousel {
           this.el.querySelector(".carousel-item.active").classList.remove("active");
           this.el.querySelectorAll(".carousel-item")[e.target.dataset.slideTo].classList.add("active");
         }
-      }
+      // }
 
     });
 
