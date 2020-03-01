@@ -26,6 +26,8 @@ class Carousel {
     this.el.innerHTML = `<div id="mainCarousel" class="main-carousel carousel slide">
                              <ol class="carousel-indicators">
                                  <li data-target="#mainCarousel" data-slide-to="0" class="carousel-indicator"></li>
+                                 <li data-target="#mainCarousel" data-slide-to="1" class="carousel-indicator"></li>
+                                 <li data-target="#mainCarousel" data-slide-to="2" class="carousel-indicator"></li>
                              </ol>
                              <div class="carousel-inner">
                                  <!--Вот здесь будет активный слайд-->
@@ -106,7 +108,7 @@ class Carousel {
                         </div>
                     </div>
                 </div>`;
-        this.el.querySelector(".carousel-indicators").innerHTML += `<li data-target="#mainCarousel" data-slide-to="${this.slides[this.i].id}" class="carousel-indicator"></li>`;
+        //this.el.querySelector(".carousel-indicators").innerHTML += `<li data-target="#mainCarousel" data-slide-to="${this.slides[this.i].id}" class="carousel-indicator"></li>`;
       }
         if (this.el.querySelector(".carousel-item.active").nextElementSibling) {
           this.el.querySelector(".carousel-item.active").nextElementSibling.classList.add("active");
@@ -145,7 +147,7 @@ class Carousel {
                         </div>
                     </div>
                 </div>`;
-        this.el.querySelector(".carousel-indicators").innerHTML += `<li data-target="#mainCarousel" data-slide-to="${this.slides[this.i].id}" class="carousel-indicator"></li>`;
+        //this.el.querySelector(".carousel-indicators").innerHTML += `<li data-target="#mainCarousel" data-slide-to="${this.slides[this.i].id}" class="carousel-indicator"></li>`;
       }
 
 
@@ -183,17 +185,44 @@ class Carousel {
     });
 
     this.el.querySelector(".carousel-indicators").addEventListener('click', (e) => {
-      // if (this.el.querySelectorAll(".carousel-item").length >= this.slides.length) {
-        if (e.target.tagName === "LI") {
-          this.el.querySelectorAll(".carousel-indicator").forEach((item => {
-            if (item.classList.contains("active")){
-              item.classList.remove("active");
-            }
-          }));
-          e.target.classList.toggle("active");
-          this.el.querySelector(".carousel-item.active").classList.remove("active");
-          this.el.querySelectorAll(".carousel-item")[e.target.dataset.slideTo].classList.add("active");
-        }
+
+      if (this.i <= this.slides.length - 1) {
+        this.i++;
+      }
+
+      if (this.i <= this.slides.length - 1) {
+        this.el.querySelector(".carousel-inner").innerHTML += `<div class="carousel-item" data-id="${this.slides[this.i].id}">
+                    <img src="${this.slides[this.i].img}" alt="Activelide">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h3 class="h1">${this.slides[this.i].title}</h3>
+                            <div>
+                                <a class="btn" href="#" role="button">
+                                    View all DEALS
+                                    <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+        //this.el.querySelector(".carousel-indicators").innerHTML += `<li data-target="#mainCarousel" data-slide-to="${this.slides[this.i].id}" class="carousel-indicator"></li>`;
+
+      }
+
+      if (e.target.tagName === "LI") {
+        this.el.querySelectorAll(".carousel-indicator").forEach((item => {
+          if (item.classList.contains("active")){
+            item.classList.remove("active");
+          }
+        }));
+        e.target.classList.toggle("active");
+        this.el.querySelector(".carousel-item.active").classList.remove("active");
+        this.el.querySelectorAll(".carousel-item")[e.target.dataset.slideTo].classList.add("active");
+      }
+
+
+      // if (this.el.querySelectorAll(".carousel-item").length > this.slides.length) {
+      //
       // }
 
     });
