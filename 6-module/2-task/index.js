@@ -60,8 +60,8 @@ class Carousel {
       this.el.querySelector(".carousel-inner").innerHTML += this.item;
     });
 
-   
-   this.el.querySelectorAll(".carousel-item")[this.slides[0].id].classList.add("active");
+
+   this.el.querySelectorAll(".carousel-item")[+this.slides[0].id].classList.add("active");
 
 
 
