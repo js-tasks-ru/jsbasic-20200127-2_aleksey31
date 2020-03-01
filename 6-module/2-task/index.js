@@ -19,6 +19,8 @@ class Carousel {
     }
   ];
 
+  i = 0;
+
   constructor(element) {
     this.el = element;
     this.el.innerHTML = `<div id="mainCarousel" class="main-carousel carousel slide">
@@ -42,30 +44,69 @@ class Carousel {
                          </div>`;
 
 
-    this.slides.forEach(({id, title, img}, index, arr) => {
-      this.item = `<div class="carousel-item" data-id="${id}">
-                      <img src="${img}" alt="Activelide">
-                      <div class="container">
-                          <div class="carousel-caption">
-                              <h3 class="h1">${title}</h3>
-                              <div>
-                                  <a class="btn" href="#" role="button">
-                                      View all DEALS
-                                      <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="">
-                                  </a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>`;
-      this.el.querySelector(".carousel-inner").innerHTML += this.item;
-    });
+    // this.slides.forEach(({id, title, img}, index, arr) => {
+    //   this.item = `<div class="carousel-item" data-id="${id}">
+    //                   <img src="${img}" alt="Activelide">
+    //                   <div class="container">
+    //                       <div class="carousel-caption">
+    //                           <h3 class="h1">${title}</h3>
+    //                           <div>
+    //                               <a class="btn" href="#" role="button">
+    //                                   View all DEALS
+    //                                   <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="">
+    //                               </a>
+    //                           </div>
+    //                       </div>
+    //                   </div>
+    //               </div>`;
+    //   this.el.querySelector(".carousel-inner").innerHTML += this.item;
+    // });
 
 
-   this.el.querySelectorAll(".carousel-item")[+this.slides[0].id].classList.add("active");
+    this.el.querySelector(".carousel-inner").innerHTML = `<div class="carousel-item" data-id="${this.slides[this.i].id}">
+                    <img src="${this.slides[this.i].img}" alt="Activelide">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h3 class="h1">${this.slides[this.i].title}</h3>
+                            <div>
+                                <a class="btn" href="#" role="button">
+                                    View all DEALS
+                                    <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+
+
+    this.el.querySelectorAll(".carousel-item")[+this.slides[0].id].classList.add("active");
+
 
 
 
     this.el.querySelector(".carousel-control-next").addEventListener('click', (e) => {
+      console.log(this.i);
+
+      if (this.i <= this.slides.length - 1) {
+        this.i++;
+      }
+      if (this.i <= this.slides.length - 1) {
+
+        this.el.querySelector(".carousel-inner").innerHTML += `<div class="carousel-item" data-id="${this.slides[this.i].id}">
+                    <img src="${this.slides[this.i].img}" alt="Activelide">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h3 class="h1">${this.slides[this.i].title}</h3>
+                            <div>
+                                <a class="btn" href="#" role="button">
+                                    View all DEALS
+                                    <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+      }
         if (this.el.querySelector(".active").nextElementSibling) {
           this.el.querySelector(".active").nextElementSibling.classList.add("active");
           this.el.querySelector(".active").classList.remove("active");
@@ -94,6 +135,8 @@ class Carousel {
 
 
   }
+
+
 
 
 
