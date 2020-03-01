@@ -80,11 +80,13 @@ class Carousel {
 
 
     this.el.querySelectorAll(".carousel-item")[+this.slides[0].id].classList.add("active");
+    this.el.querySelector(`*[data-slide-to="${this.slides[this.i].id}"]`).classList.add("active");
 
 
 
 
     this.el.querySelector(".carousel-control-next").addEventListener('click', (e) => {
+
       console.log(this.i);
 
       if (this.i <= this.slides.length - 1) {
@@ -114,29 +116,49 @@ class Carousel {
           this.el.querySelector(".carousel-item").classList.add("active");
           this.el.querySelectorAll(".carousel-item.active")[1].classList.remove("active");
         }
+
+      this.el.querySelectorAll(".carousel-indicator").forEach((item => {
+        if (item.classList.contains("active")){
+          item.classList.remove("active");
+        }
+      }));
+      console.log("активный слайд", this.el.querySelector(".carousel-item.active").dataset.id);
+      this.el.querySelector(`*[data-slide-to="${this.el.querySelector(".carousel-item.active").dataset.id}"]`).classList.add("active");
     });
 
     this.el.querySelector(".carousel-control-prev").addEventListener('click', (e) => {
-        if (this.el.querySelector(".carousel-item.active").previousElementSibling) {
-          this.el.querySelector(".carousel-item.active").previousElementSibling.classList.add("active");
-          this.el.querySelectorAll(".carousel-item.active")[1].classList.remove("active");
-        } else {
-          this.el.querySelector(".carousel-inner").lastElementChild.classList.add("active");
-          this.el.querySelector(".carousel-item.active").classList.remove("active");
+        if (this.el.querySelectorAll(".carousel-item").length >= this.slides.length) {
+          if (this.el.querySelector(".carousel-item.active").previousElementSibling) {
+            this.el.querySelector(".carousel-item.active").previousElementSibling.classList.add("active");
+            this.el.querySelectorAll(".carousel-item.active")[1].classList.remove("active");
+          } else {
+            this.el.querySelector(".carousel-inner").lastElementChild.classList.add("active");
+            this.el.querySelector(".carousel-item.active").classList.remove("active");
+          }
+          this.el.querySelectorAll(".carousel-indicator").forEach((item => {
+            if (item.classList.contains("active")){
+              item.classList.remove("active");
+            }
+          }));
+          console.log("активный слайд", this.el.querySelector(".carousel-item.active").dataset.id);
+          this.el.querySelector(`*[data-slide-to="${this.el.querySelector(".carousel-item.active").dataset.id}"]`).classList.add("active");
         }
     });
 
     this.el.querySelector(".carousel-indicators").addEventListener('click', (e) => {
-      if (e.target.tagName === "LI") {
-        this.el.querySelectorAll(".carousel-indicator").forEach((item => {
-          if (item.classList.contains("active")){
-            item.classList.remove("active");
-          }
-        }));
-        e.target.classList.toggle("active");
-        this.el.querySelector(".carousel-item.active").classList.remove("active");
-        this.el.querySelectorAll(".carousel-item")[e.target.dataset.slideTo].classList.add("active");
+      if (this.el.querySelectorAll(".carousel-item").length >= this.slides.length) {
+        if (e.target.tagName === "LI") {
+          this.el.querySelectorAll(".carousel-indicator").forEach((item => {
+            if (item.classList.contains("active")){
+              item.classList.remove("active");
+            }
+          }));
+          e.target.classList.toggle("active");
+          this.el.querySelector(".carousel-item.active").classList.remove("active");
+          this.el.querySelectorAll(".carousel-item")[e.target.dataset.slideTo].classList.add("active");
+        }
       }
+
     });
 
 
