@@ -82,8 +82,10 @@ class Carousel {
     });
 
     this.el.querySelector(".carousel-indicators").addEventListener('click', (e) => {
-      this.el.querySelector(".active").classList.remove("active");
-      this.el.querySelectorAll(".carousel-item")[e.target.dataset.slideTo].classList.add("active");
+      if (e.target.tagName === "LI") {
+        this.el.querySelector(".active").classList.remove("active");
+        this.el.querySelectorAll(".carousel-item")[e.target.dataset.slideTo].classList.add("active");
+      }
     });
 
 
