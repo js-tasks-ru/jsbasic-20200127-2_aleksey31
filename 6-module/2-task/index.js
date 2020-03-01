@@ -126,6 +126,30 @@ class Carousel {
     });
 
     this.el.querySelector(".carousel-control-prev").addEventListener('click', (e) => {
+      if (this.i <= this.slides.length - 1) {
+        this.i++;
+      }
+
+      if (this.i <= this.slides.length - 1) {
+        this.el.querySelector(".carousel-inner").innerHTML += `<div class="carousel-item" data-id="${this.slides[this.i].id}">
+                    <img src="${this.slides[this.i].img}" alt="Activelide">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h3 class="h1">${this.slides[this.i].title}</h3>
+                            <div>
+                                <a class="btn" href="#" role="button">
+                                    View all DEALS
+                                    <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+        this.el.querySelector(".carousel-indicators").innerHTML += `<li data-target="#mainCarousel" data-slide-to="${this.slides[this.i].id}" class="carousel-indicator"></li>`;
+      }
+
+
+
 
           if (this.el.querySelector(".carousel-item.active").previousElementSibling) {
             this.el.querySelector(".carousel-item.active").previousElementSibling.classList.add("active");
