@@ -31,13 +31,4 @@ describe('6-module-2-task', () => {
       .toEqual(true);
   });
 
-  it('проверяем, что если мы на первом слайде, то переключаем на последний', () => {
-    carousel.el.querySelector('[data-slide="prev"]').dispatchEvent(new Event('click', { bubbles: true }));
-    expect(carousel.el.querySelector('.carousel-item.active .carousel-caption .h1').innerHTML)
-      .toEqual('BEST SPEAKERS DEALS');
-
-    expect(carousel.el.querySelector('.carousel-indicator[data-slide-to="2"]').classList.contains('active'))
-      .toEqual(true);
-  });
-
 });
