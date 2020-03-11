@@ -61,7 +61,6 @@ class Carousel {
                       </div>
                   </div>`;
     });
-    console.log(render);
 
     this.el.querySelector(".carousel-inner").innerHTML = render[0];
 
