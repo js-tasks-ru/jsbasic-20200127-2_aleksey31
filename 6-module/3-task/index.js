@@ -25,8 +25,37 @@ class Menu {
   </ul>
   `;
 
+
   constructor(element) {
+    this.el = element;
+    this.el.innerHTML = this.template;
+    const background = document.querySelector(".backdrop");
+    this.el.querySelector(".list-group").addEventListener('pointerenter', (e) => {
+
+      if (e.target.classList.contains("list-group-item")) {
+        e.target.lastElementChild.classList.add("show");
+        background.classList.add("show");
+      }
+    }, true);
+    this.el.querySelector(".list-group").addEventListener('pointerleave', (e) => {
+
+      if (e.target.classList.contains("list-group-item")) {
+        e.target.lastElementChild.classList.remove("show");
+        background.classList.remove("show");
+      }
+    }, true);
+
+    this.el.querySelector(".list-group").addEventListener('click', (e) => {
+      if (e.target.closest("li") && e.target.closest("li").dataset.id) {
+        console.log(e.target.closest("li").dataset.id);
+        return e.target.closest("li").dataset.id;
+      }
+    });
+
   }
+
+
+
 }
 
 // Делает класс доступным глобально, сделано для упрощения, чтобы можно было его вызывать из другого скрипта
