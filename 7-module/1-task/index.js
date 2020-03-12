@@ -6,9 +6,9 @@
 
 function promiseClick(button) {
     button.addEventListener('click', (event) => {
-        return new Promise(function(resolve, reject) {
+        const promise = new Promise(function(resolve, reject) {
             resolve(event);
         });
-        //return promise;
+        return promise;
     }, { once: true });
 }
