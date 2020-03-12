@@ -5,12 +5,11 @@
  */
 
 function promiseClick(button) {
-    let promise;
-    button.addEventListener('click', (event) => {
-        promise = new Promise(function(resolve, reject) {
+
+    return button.addEventListener('click', (event) => {
+        new Promise(function(resolve, reject) {
             resolve(event);
         });
-        return promise;
     }, { once: true });
-    return promise;
+
 }
