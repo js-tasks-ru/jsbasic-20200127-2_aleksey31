@@ -83,8 +83,9 @@ class ProductList {
       let stingArrProduct;
       this.el = addEventListener("click", (e) => {
         let yes;
-        let idProduct = e.target.closest(".products-list-product").dataset.productId;
+        let idProduct;
         if (e.target.dataset.buttonRole === "add-to-cart") {
+          idProduct = e.target.closest(".products-list-product").dataset.productId;
           yes = confirm('Вы уверенны, что хотите добавить этот товар в корзину?');
           if (yes) {
             console.log("yes");
@@ -100,8 +101,8 @@ class ProductList {
         }
         console.log(arrProduct);
         stingArrProduct = arrProduct;
-        localStorage.basket = JSON.stringify(stingArrProduct);
-        console.log(localStorage.basket);
+        localStorage.productsStoreKey = JSON.stringify(stingArrProduct);
+        console.log(localStorage.productsStoreKey);
 
 
       });
