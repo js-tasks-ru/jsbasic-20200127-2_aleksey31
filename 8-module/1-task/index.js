@@ -4,14 +4,6 @@ class ProductList {
 
   constructor(element) {
     this.el = element;
-
-  }
-
-
-
-
-
-  show() {
     this.arr = fetch(this.productsUrl).then(response => response.json().then(response => {
       let arrItems = response;
       console.log(arrItems);
@@ -98,9 +90,10 @@ class ProductList {
           } else {
             console.log("no");
           }
+          stingArrProduct = arrProduct;
         }
         console.log(arrProduct);
-        stingArrProduct = arrProduct;
+
         localStorage.productsStoreKey = JSON.stringify(stingArrProduct);
         console.log(localStorage.productsStoreKey);
 
@@ -108,6 +101,14 @@ class ProductList {
       });
 
     }));
+  }
+
+
+
+
+
+  show() {
+
     return fetch(this.productsUrl);
   }
 }
