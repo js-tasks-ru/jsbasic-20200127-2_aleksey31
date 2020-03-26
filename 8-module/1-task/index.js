@@ -4,11 +4,7 @@ class ProductList {
 
   constructor(element) {
     this.el = element;
-    this.arr = fetch(this.productsUrl).then(response => response.json().then(response => {
-      let arrItems = response;
-      console.log(arrItems);
-
-      this.el.innerHTML = `
+    this.el.innerHTML = `
         <div class="row justify-content-end">
             <div class="col-lg-9">
                 <h3 class="section-title">Top Recommendations for You</h3>
@@ -19,6 +15,11 @@ class ProductList {
             </div>
         </div>
       `;
+    this.arr = fetch(this.productsUrl).then(response => response.json().then(response => {
+      let arrItems = response;
+      console.log(arrItems);
+
+
 
       let homePage = this.el.querySelector(".homepage-cards");
       arrItems.forEach((item, index, arra) => {
