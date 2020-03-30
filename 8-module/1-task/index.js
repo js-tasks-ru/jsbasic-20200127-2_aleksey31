@@ -4,6 +4,14 @@ class ProductList {
 
   constructor(element) {
     this.el = element;
+
+  }
+
+
+
+
+
+  show() {
     this.el.innerHTML = `
         <div class="row justify-content-end">
             <div class="col-lg-9">
@@ -83,10 +91,11 @@ class ProductList {
           if (yes) {
             console.log("yes");
             console.log(idProduct);
-            idProduct = String(idProduct);
+            //idProduct = String(idProduct);
             if (!arrProduct.includes(idProduct)) {
-              arrProduct.push(idProduct);
-              //arrProduct = [...arrProduct];
+              arrProduct.push(arrItems.find((item) => item.id == idProduct)) ;
+              //arrProduct.push(idProduct);
+              console.log(arrProduct);
             }
           } else {
             console.log("no");
@@ -95,21 +104,13 @@ class ProductList {
         }
         console.log(arrProduct);
 
-        localStorage.productsStoreKey = JSON.stringify(stingArrProduct);
+        localStorage.setItem('cart-products', JSON.stringify(arrProduct));
         console.log(localStorage.productsStoreKey);
 
 
       });
 
     }));
-  }
-
-
-
-
-
-  show() {
-
     return fetch(this.productsUrl);
   }
 }
