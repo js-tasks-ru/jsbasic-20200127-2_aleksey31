@@ -24,13 +24,9 @@ class ProductList {
       `;
     this.arr = fetch(this.productsUrl).then(response => response.json().then(response => {
       let arrItems = response;
-      console.log(arrItems);
-
-
 
       let homePage = this.el.querySelector(".homepage-cards");
       arrItems.forEach((item, index, arra) => {
-        console.log(item);
 
         let fullStar =`<i class="icon-star checked"></i>`;
         let emptyStar =`<i class="icon-star active"></i>`;
@@ -49,7 +45,6 @@ class ProductList {
             allStars += emptyStar;
           }
         }
-        console.log(allStars);
 
         homePage.innerHTML += `
           <div data-product-id="${item.id}" class="products-list-product col-md-6 col-lg-4 mb-4">
@@ -87,24 +82,18 @@ class ProductList {
           idProduct = e.target.closest(".products-list-product").dataset.productId;
           yes = confirm('Вы уверенны, что хотите добавить этот товар в корзину?');
           if (yes) {
-            console.log("yes");
-            console.log(idProduct);
             if (!arrProduct.includes(arrItems.find((item) => {
                   if (item.id == idProduct) {
                     return true;
                   }
                 }))) {
               arrProduct.push(arrItems.find((item) => item.id == idProduct)) ;
-              console.log(arrProduct);
-              localStorage.setItem('cart-products', JSON.stringify(arrProduct));
             }
           } else {
             console.log("no");
           }
         }
         console.log(arrProduct);
-        //localStorage.setItem('cart-products', JSON.stringify(arrProduct));
-        console.log(localStorage.productsStoreKey);
       });
     }));
     return fetch(this.productsUrl);
