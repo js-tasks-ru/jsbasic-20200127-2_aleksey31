@@ -4,14 +4,6 @@ class ProductList {
 
   constructor(element) {
     this.el = element;
-
-  }
-
-
-
-
-
-  show() {
     this.el.innerHTML = `
         <div class="row justify-content-end">
             <div class="col-lg-9">
@@ -22,6 +14,14 @@ class ProductList {
             </div>
         </div>
       `;
+  }
+
+
+
+
+
+  show() {
+
     this.arr = fetch(this.productsUrl).then(response => response.json().then(response => {
       let arrItems = response;
 
@@ -72,7 +72,6 @@ class ProductList {
           </div>
         `
       });
-
 
       let arrProduct = [];
       this.el.addEventListener("click", (e) => {
