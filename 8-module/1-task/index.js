@@ -80,7 +80,6 @@ class ProductList {
 
 
       let arrProduct = [];
-      let stingArrProduct;
       this.el = addEventListener("click", (e) => {
         let yes;
         let idProduct;
@@ -90,26 +89,23 @@ class ProductList {
           if (yes) {
             console.log("yes");
             console.log(idProduct);
-            //idProduct = String(idProduct);
-            if (!arrProduct.includes(idProduct)) {
+            if (!arrProduct.includes(arrItems.find((item) => {
+                  if (item.id == idProduct) {
+                    return true;
+                  }
+                }))) {
               arrProduct.push(arrItems.find((item) => item.id == idProduct)) ;
-              //arrProduct.push(idProduct);
               console.log(arrProduct);
               localStorage.setItem('cart-products', JSON.stringify(arrProduct));
             }
           } else {
             console.log("no");
           }
-          stingArrProduct = arrProduct;
         }
         console.log(arrProduct);
-
         //localStorage.setItem('cart-products', JSON.stringify(arrProduct));
         console.log(localStorage.productsStoreKey);
-
-
       });
-
     }));
     return fetch(this.productsUrl);
   }
