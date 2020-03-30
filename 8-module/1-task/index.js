@@ -80,7 +80,7 @@ class ProductList {
 
 
       let arrProduct = [];
-      this.el = addEventListener("click", (e) => {
+      this.el.addEventListener("click", (e) => {
         let yes;
         let idProduct;
         if (e.target.dataset.buttonRole === "add-to-cart") {
