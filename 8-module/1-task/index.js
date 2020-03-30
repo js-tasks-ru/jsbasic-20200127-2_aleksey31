@@ -18,7 +18,6 @@ class ProductList {
                 <h3 class="section-title">Top Recommendations for You</h3>
                 <div class="row homepage-cards">
                     <!--ВОТ ЗДЕСЬ БУДУТ КАРТОЧКИ ТОВАРОВ-->
-                    
                 </div>
             </div>
         </div>
@@ -96,6 +95,7 @@ class ProductList {
               arrProduct.push(arrItems.find((item) => item.id == idProduct)) ;
               //arrProduct.push(idProduct);
               console.log(arrProduct);
+              localStorage.setItem('cart-products', JSON.stringify(arrProduct));
             }
           } else {
             console.log("no");
@@ -104,7 +104,7 @@ class ProductList {
         }
         console.log(arrProduct);
 
-        localStorage.setItem('cart-products', JSON.stringify(arrProduct));
+        //localStorage.setItem('cart-products', JSON.stringify(arrProduct));
         console.log(localStorage.productsStoreKey);
 
 
