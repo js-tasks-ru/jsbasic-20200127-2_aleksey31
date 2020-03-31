@@ -95,7 +95,6 @@ class ProductList {
         console.log(arrProduct);
       });
     }));
-   // return fetch(this.productsUrl);
   }
 }
 
