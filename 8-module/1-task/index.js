@@ -22,7 +22,7 @@ class ProductList {
 
   show() {
 
-    this.arr = fetch(this.productsUrl).then(response => response.json().then(response => {
+    return this.arr = fetch(this.productsUrl).then(response => response.json().then(response => {
       let arrItems = response;
 
       let homePage = this.el.querySelector(".homepage-cards");
@@ -95,7 +95,7 @@ class ProductList {
         console.log(arrProduct);
       });
     }));
-    return fetch(this.productsUrl);
+   // return fetch(this.productsUrl);
   }
 }
 
