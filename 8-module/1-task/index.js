@@ -17,9 +17,6 @@ class ProductList {
   }
 
 
-
-
-
   show() {
 
     return this.arr = fetch(this.productsUrl).then(response => response.json().then(response => {
@@ -98,6 +95,5 @@ class ProductList {
     }));
   }
 }
-
 // Делает класс доступным глобально, сделано для упрощения, чтобы можно было его вызывать из другого скрипта
 window.ProductList = ProductList;
