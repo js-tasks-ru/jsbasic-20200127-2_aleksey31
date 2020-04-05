@@ -86,7 +86,8 @@ class ProductList {
                     return true;
                   }
                 }))) {
-              arrProduct.push(arrItems.find((item) => item.id == idProduct)) ;
+              arrProduct.push(arrItems.find((item) => item.id == idProduct));
+              localStorage.setItem('cart-products', JSON.stringify(arrProduct));
             }
           } else {
             console.log("no");
