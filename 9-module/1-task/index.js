@@ -84,7 +84,7 @@ class CheckoutProductList {
             e.target.closest(".product-wrapper").remove();
           }
         } else {
-          //console.log("no");
+          console.log("no");
         }
       }
       //console.log(arrProduct);
