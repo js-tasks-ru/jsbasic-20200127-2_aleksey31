@@ -6,12 +6,10 @@ class CheckoutProductList {
   constructor(parentElement) {
 
     this.cartArr = JSON.parse(localStorage.getItem('cart-products'));
-    console.log(this.cartArr);
     parentElement.innerHTML = `<div class="product-list-box">
         <!--ВОТ ЗДЕСЬ БУДУТ КАРТОЧКИ ТОВАРОВ-->
     </div>`;
     let basketPage = parentElement.querySelector('.product-list-box');
-    console.log(basketPage);
     this.cartArr.forEach((product) => {
       let fullStar =`<i class="icon-star checked"></i>`;
       let emptyStar =`<i class="icon-star active"></i>`;
@@ -26,6 +24,8 @@ class CheckoutProductList {
         }
       }
 
+      console.log(this.cartArr);
+
       basketPage.innerHTML += `
         <div data-product-id="${product.id}" class="product-wrapper box-inner-col description-col">
 
@@ -38,7 +38,7 @@ class CheckoutProductList {
           <div class="rate">
             ${allStars}
           </div>
-          <p class="rate-amount d-none d-md-block mt-1">${product.rating.reviewsAmount} reviews</p>
+          <p class="rate-amount d-none d-md-block mt-1">${product.rating !== null ? product.rating.reviewsAmount : '0'} reviews</p>
         </div>
       
         <div class="product-price">
